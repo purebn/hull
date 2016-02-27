@@ -78,8 +78,8 @@ return {
   description = 'Plugin to kick flooders from group.',
   usage = {},
   patterns = {
-    '^!antiflood (enable)$',
-    '^!antiflood (disable)$'
+    '^[!/#$&@ ]antiflood (enable)$',
+    '^[!/#$&@ ]antiflood (disable)$'
   },
   run = run,
   privileged = true,
