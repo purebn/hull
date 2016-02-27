@@ -24,15 +24,15 @@ end
 local function list_plugins(only_enabled)
   local text = ''
   for k, v in pairs( plugins_names( )) do
-    --  ✔ enabled, ❌ disabled
-    local status = '❌'
+    --  ↯ enabled, Ω disabled
+    local status = 'Ω'
     -- Check if is enabled
     for k2, v2 in pairs(_config.enabled_plugins) do
       if v == v2..'.lua' then 
-        status = '✔' 
+        status = '↯' 
       end
     end
-    if not only_enabled or status == '✔' then
+    if not only_enabled or status == '↯' then
       -- get the name
       v = string.match (v, "(.*)%.lua")
       text = text..v..'  '..status..'\n'
@@ -164,18 +164,18 @@ end
 return {
   description = "Plugin to manage other plugins. Enable, disable or reload.", 
   usage = {
-    "!plugins: list all plugins.", 
-    "!plugins enable [plugin]: enable plugin.",
-    "!plugins disable [plugin]: disable plugin.",
-    "!plugins disable [plugin] chat: disable plugin only this chat.",
+    "plugins: list all plugins.", 
+    "plugins enable [plugin]: enable plugin.",
+    "plugins disable [plugin]: disable plugin.",
+    "plugins disable [plugin] chat: disable plugin only this chat.",
     "!plugins reload: reloads all plugins." },
   patterns = {
-    "^!plugins$",
-    "^!plugins? (enable) ([%w_%.%-]+)$",
-    "^!plugins? (disable) ([%w_%.%-]+)$",
-    "^!plugins? (enable) ([%w_%.%-]+) (chat)",
-    "^!plugins? (disable) ([%w_%.%-]+) (chat)",
-    "^!plugins? (reload)$" },
+    "^[!/#$&@ ]plugins$",
+    "^[!/#$&@ ]plugins? (enable) ([%w_%.%-]+)$",
+    "^[!/#$&@ ]plugins? (disable) ([%w_%.%-]+)$",
+    "^[!/#$&@ ]plugins? (enable) ([%w_%.%-]+) (chat)",
+    "^[!/#$&@ ]plugins? (disable) ([%w_%.%-]+) (chat)",
+    "^[!/#$&@ ]plugins? (reload)$" },
   run = run,
   privileged = true
 }
