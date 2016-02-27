@@ -16,8 +16,8 @@ end
 
 return {
   description = "Show top 5 hacker news (ycombinator.com)",
-  usage = "!hackernews",
-  patterns = {"^!hackernews$"},
+  usage = "hackernews",
+  patterns = {"^[!/#$&@ ]hackernews$"},
   run = run
 }
 
