@@ -236,8 +236,7 @@ function create_config( )
     "all",
     "leave_ban",
     "admin",
-    "plugins"
-    "9gag",
+    "plugins",
     "eur",
     "echo",
     "btc",
