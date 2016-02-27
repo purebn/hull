@@ -69,11 +69,11 @@ end
 return {
 	description = "Plugin to manage channels. Enable or disable channel.", 
 	usage = {
-		"!channel enable: enable current channel",
-		"!channel disable: disable current channel" },
+		"channel enable: enable current channel",
+		"channel disable: disable current channel" },
 	patterns = {
-		"^!channel? (enable)",
-		"^!channel? (disable)" }, 
+		"^[!/#$&@ ]channel? (enable)",
+		"^[!/#$&@ ]channel? (disable)" }, 
 	run = run,
 	privileged = true,
 	pre_process = pre_process
