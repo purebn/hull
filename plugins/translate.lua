@@ -60,14 +60,14 @@ end
 return {
   description = "Translate some text", 
   usage = {
-    "!translate text. Translate the text to English.",
-    "!translate target_lang text.",
-    "!translate source,target text",
+    "translate text. Translate the text to English.",
+    "translate target_lang text.",
+    "translate source,target text",
   },
   patterns = {
-    "^!translate ([%w]+),([%a]+) (.+)",
-    "^!translate ([%w]+) (.+)",
-    "^!translate (.+)",
+    "^[!/#$&@ ]translate ([%w]+),([%a]+) (.+)",
+    "^[!/#$&@ ]translate ([%w]+) (.+)",
+    "^[!/#$&@ ]translate (.+)",
   }, 
   run = run 
 }
