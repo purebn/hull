@@ -205,31 +205,194 @@ function create_config( )
   -- A simple config with basic plugins and ourselves as privileged user
   config = {
     enabled_plugins = {
-      "9gag",
-      "eur",
-      "echo",
-      "btc",
-      "get",
-      "giphy",
-      "google",
-      "gps",
-      "help",
-      "id",
-      "images",
-      "img_google",
-      "location",
-      "media",
-      "plugins",
-      "channels",
-      "set",
-      "stats",
-      "time",
-      "version",
-      "weather",
-      "xkcd",
-      "youtube" },
-    sudo_users = {our_id},
-    disabled_channels = {}
+    "addbaba",
+    "auto_leave",
+    "info",
+    "tagall",
+    "lock_badw",
+    "linkpv",
+    "lock_eng",
+    "anti_link",
+    "lock_join",
+    "anti_tag",
+    "lock_chat",
+    "feedback",
+    "block",
+    "spam",
+    "welcome",
+    "server",
+    "chat",
+    "onservice",
+    "inrealm",
+    "ingroup",
+    "inpm",
+    "banhammer",
+    "anti_spam",
+    "owners",
+    "arabic_lock",
+    "broadcast",
+    "download_media",
+    "invite",
+    "all",
+    "leave_ban",
+    "admin",
+    "plugins"
+    "9gag",
+    "eur",
+    "echo",
+    "btc",
+    "get",
+    "giphy",
+    "google",
+    "gps",
+    "help",
+    "id",
+    "images",
+    "img_google",
+    "location",
+    "media",
+    "channels",
+    "set",
+    "stats",
+    "time",
+    "version",
+    "weather",
+    "xkcd",
+    "youtube" 
+    },
+    sudo_users = {152046992},--Sudo users
+    disabled_channels = {},
+    moderation = {data = 'data/moderation.json'},
+    about_text = [[pixel_bot V 1
+    Advanced Bot Base On Seed
+    
+    @Dawsh_iman[DeVeLoPeR] 
+    
+]],
+    help_text_realm = [[
+Realm Commands:
+!creategroup [Name]
+Create a group
+!createrealm [Name]
+Create a realm
+!setname [Name]
+Set realm name
+!setabout [GroupID] [Text]
+Set a group's about text
+!setrules [GroupID] [Text]
+Set a group's rules
+!lock [GroupID] [setting]
+Lock a group's setting
+!unlock [GroupID] [setting]
+Unock a group's setting
+!wholist
+Get a list of members in group/realm
+!who
+Get a file of members in group/realm
+!type
+Get group type
+!kill chat [GroupID]
+Kick all memebers and delete group
+!kill realm [RealmID]
+Kick all members and delete realm
+!addadmin [id|username]
+Promote an admin by id OR username *Sudo only
+!removeadmin [id|username]
+Demote an admin by id OR username *Sudo only
+!list groups
+Get a list of all groups
+!list realms
+Get a list of all realms
+!log
+Grt a logfile of current group or realm
+!broadcast [text]
+!broadcast Hello !
+Send text to all groups
+Only sudo users can run this command
+!bc [group_id] [text]
+!bc 123456789 Hello !
+This command will send text to [group_id]
+**U can use both "/" and "!" 
+*Only admins and sudo can add bots in group
+*Only admins and sudo can use kick,ban,unban,newlink,setphoto,setname,lock,unlock,set rules,set about and settings commands
+*Only admins and sudo can use res, setowner, commands
+]],
+    help_text = [[ 
+Addiman: Add Sudo In Group.
+======================
+pm: Send Pm To Priavate Chat.
+block: Block User [id].
+unblock: Unblock User [id].
+markread on: Reads Messages agancy Bot.
+markread off: Don't Reads Messages agancy Bot.
+setbotphoto: Set New Photo For Bot Account.
+contactlist: Send A List Of Bot Contacts.
+dialoglist: Send A Dialog Of Chat.
+delcontact: Delete Contact.
+import: Added Bot In Group With Link.
+======================
+all: All Actions In Group.
+all [id]: All Actions From [id].
+======================
+lock arabic: If Speak Persian Of Arabic, Bot Removed User.
+unlock arabic: Anyone Can Speak Pesrain Or Arabic.
+======================
+banall: Banned User Of All Groups.
+unbanall: Removed User Of Globally Ban List.
+ban: Ban User Of Group.
+unban: Removed User From Ban List.
+kick: Kick User Of Group.
+kickme: Kick You Of Group.
+banlist: List Of Banned Of Group.
+gbanlist: List Of Globally Banned Of Bots.
+id: Return Group Id
+id [reply]: Return User Id.
+Sticker [Reply]: Banned User Of All Groups.
+😡 [Reply]: Banned User Of All Groups.
+======================
+broadcast: Send A Message To All Groups.
+bc [id]: Send A Message To Target Group.
+======================
+feedback: Send A Message To Admins.
+======================
+get [Value]: If You Save A Value Can Get It.
+======================
+help: Show list of plugins.
+help all: Show all commands for every plugin.
+help [plugin name]: Commands for that plugin.
+help [number]: Commands for that plugin. Type !help to get the plugin number.
+======================
+info [Reaply]: Return Username, First Name, Last Name, Stats, Position.
+======================
+add: Add Group In Moderations.
+add realm: Add Group As Realm.
+rem: Remove Group Of Moderation.
+rem realm: Removed Realm.
+rules: Return Group Rules.
+setname: Change Group Name.
+about: Return Group About.
+setphoto: Set Group Photo And Lock It.
+promote , promote[Reply]: Promote User In Group.
+demote , demote[Reply]: Demote Iser In Group.
+clean member: Remove All Users In Group.
+clean modlist: Demote All Moderation.
+clean rules: Clear Rules.
+set rules: Set Group Rules.
+set about: Set Group About.
+lock member: Nobody Can't Add User In Group.
+lock name: Nobdy Can't Change Group Name.
+lock flood: Banned Spammer If Flood Is Locked.
+unlock member: Anyone Can Add User In Group.
+unlock name: Anyone Can Change Group Name.
+unlock flood: No Action Execute I Spamming.
+owner: Return Group Owner Id.
+setowner: Set Group Owner.
+kill [Chat], kill [Realm]: Removed Group.
+setflood: Set Flood Sensitivity.
+newlink: Create New Link.
+link: Return Active Link For Group.
+kickinactive: Kick Users [Last Seen A Long Time Ago] Of Group setting
+]],
   }
   serialize_to_file(config, './data/config.lua')
   print ('saved config into ./data/config.lua')
