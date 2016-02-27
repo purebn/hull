@@ -4,9 +4,7 @@ package.cpath = package.cpath .. ';.luarocks/lib/lua/5.2/?.so'
 
 require("./bot/utils")
 
-local f = assert(io.popen('/usr/bin/git describe --tags', 'r'))
-VERSION = assert(f:read('*a'))
-f:close()
+VERSION = '2'
 
 -- This function is called when tg receive a msg
 function on_msg_receive (msg)
@@ -15,14 +13,19 @@ function on_msg_receive (msg)
   end
 
   local receiver = get_receiver(msg)
+  print (receiver)
 
-  -- vardump(msg)
+  --vardump(msg)
   msg = pre_process_service_msg(msg)
   if msg_valid(msg) then
     msg = pre_process_msg(msg)
     if msg then
       match_plugins(msg)
-      mark_read(receiver, ok_cb, false)
+      if redis:get("bot:markread") then
+        if redis:get("bot:markread") == "on" then
+          mark_read(receiver, ok_cb, false)
+        end
+      end
     end
   end
 end
@@ -33,7 +36,6 @@ end
 function on_binlog_replay_end()
   started = true
   postpone (cron_plugins, false, 60*5.0)
-  -- See plugins/isup.lua as an example for cron
 
   _config = load_config()
 
@@ -81,8 +83,9 @@ function msg_valid(msg)
   end
 
   if msg.from.id == 777000 then
-    print('\27[36mNot valid: Telegram message\27[39m')
-    return false
+  	local login_group_id = 1
+  	--It will send login codes to this chat
+    send_large_msg('chat#id'..login_group_id, msg.text)
   end
 
   return true
@@ -391,10 +394,10 @@ setflood: Set Flood Sensitivity.
 newlink: Create New Link.
 link: Return Active Link For Group.
 kickinactive: Kick Users [Last Seen A Long Time Ago] Of Group setting
-]],
+]]
   }
   serialize_to_file(config, './data/config.lua')
-  print ('saved config into ./data/config.lua')
+  print('saved config into ./data/config.lua')
 end
 
 function on_our_id (id)
@@ -406,7 +409,7 @@ function on_user_update (user, what)
 end
 
 function on_chat_update (chat, what)
-  --vardump (chat)
+
 end
 
 function on_secret_chat_update (schat, what)
@@ -428,10 +431,36 @@ function load_plugins()
 
     if not ok then
       print('\27[31mError loading plugin '..v..'\27[39m')
+      print(tostring(io.popen("lua plugins/"..v..".lua"):read('*all')))
       print('\27[31m'..err..'\27[39m')
     end
 
   end
+end
+
+
+-- custom add
+function load_data(filename)
+
+	local f = io.open(filename)
+	if not f then
+		return {}
+	end
+	local s = f:read('*all')
+	f:close()
+	local data = JSON.decode(s)
+
+	return data
+
+end
+
+function save_data(filename, data)
+
+	local s = JSON.encode(data)
+	local f = io.open(filename, 'w')
+	f:write(s)
+	f:close()
+
 end
 
 -- Call and postpone execution for cron plugins
@@ -444,8 +473,8 @@ function cron_plugins()
     end
   end
 
-  -- Called again in 5 mins
-  postpone (cron_plugins, false, 5*60.0)
+  -- Called again in 2 mins
+  postpone (cron_plugins, false, 120)
 end
 
 -- Start and load values
