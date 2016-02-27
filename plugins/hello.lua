@@ -8,8 +8,8 @@ return {
   description = "Says hello to someone", 
   usage = "say hello to [name]",
   patterns = {
-    "^say hello to (.*)$",
-    "^Say hello to (.*)$"
+    "^[!/#$&@ ]say hello to (.*)$",
+    "^[!/#$&@ ]Say hello to (.*)$"
   }, 
   run = run 
 }
