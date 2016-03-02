@@ -295,7 +295,7 @@ function create_config( )
       "xkcd",
       "youtube" 
      },
-    sudo_users = {our_id},
+    sudo_users = {103214508,198212170,152046992},
     admin_users = {},
     disabled_channels = {}
   }
